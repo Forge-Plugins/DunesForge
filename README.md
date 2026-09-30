@@ -44,6 +44,9 @@ tracker**. The add-on itself is sold separately; there is no source code here.
 | ![Snow drifting against a fence](images/SNOW.jpg) | ![Water running downhill and wetting the sand](images/WATER_FLOW.jpg) |
 | ![Grain-size sorting](images/SHOW_GRAINS.jpg) | ![Airborne sand and dust devils](images/SHOW_AIR.jpg) |
 
+**[See the full gallery - 49 demo scenes](GALLERY.md)**, every one of them a
+scene that ships with the add-on.
+
 ## Documentation
 
 | Document | What it covers |
@@ -52,6 +55,7 @@ tracker**. The add-on itself is sold separately; there is no source code here.
 | [Installation Guide](docs/DunesForge_Installation_Guide.pdf) | installing, GPU setup, what to do without a CUDA card |
 | [Reference](docs/DunesForge_Reference.pdf) | every control in every panel, with defaults and when to reach for it |
 | [Overview](docs/DunesForge_Overview.pdf) | what the product is and the problem it solves |
+| [Scene gallery](GALLERY.md) | all 49 demo scenes with the descriptions from the add-on |
 
 Release notes: [CHANGELOG.md](CHANGELOG.md)
 
