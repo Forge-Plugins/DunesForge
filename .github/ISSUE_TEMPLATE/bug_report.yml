@@ -1,0 +1,83 @@
+name: Bug report
+description: Something does not work as the documentation describes.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time. Before you start: in Blender open
+        the **DunesForge** tab (N-panel) and use **GPU Self-Check** - it reports which backend is active and what your card is.
+        Paste that into the "Details" field below.
+  - type: input
+    id: df_version
+    attributes:
+      label: DunesForge version
+      description: the add-on entry in Preferences > Get Extensions
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: blender_version
+    attributes:
+      label: Blender version
+      placeholder: "5.3 (or 4.2, 4.4 ...)"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did you do, what did you expect, and what happened instead?
+      placeholder: |
+        1. Selected an Editable Poly at polygon level
+        2. Held Alt+1 and aimed east (Inset)
+        3. Expected ... but ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - A dial (opening, aiming, running a command)
+        - The hotbox
+        - The menu editor
+        - Keyboard shortcuts / mouse buttons
+        - Installation or update
+        - Documentation
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: repeat
+    attributes:
+      label: Does it happen every time?
+      options:
+        - Every time
+        - Sometimes
+        - Only once
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details from "Report a bug..."
+      description: Paste (Ctrl+V) what DunesForge > Report a bug... copied to the clipboard.
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or anything else
+      description: Drag images here. If one dial is involved, a preset of it (editor > Save preset...) helps a lot.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues and this one is not there yet.
+          required: true
+        - label: This report contains no licence key or purchase details.
+          required: true

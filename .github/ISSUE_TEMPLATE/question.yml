@@ -1,0 +1,19 @@
+name: Question
+description: How do I...? Something unclear in the documentation?
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: The [QuickStart](https://github.com/looki666/DunesForge/blob/main/docs/DunesForge_QuickStart.pdf) and the [Reference](https://github.com/looki666/DunesForge/blob/main/docs/DunesForge_Reference.pdf) answer most questions.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: DunesForge and Blender versions
+      placeholder: "DunesForge 1.3.207, Blender 5.3, NVIDIA RTX 4070"
