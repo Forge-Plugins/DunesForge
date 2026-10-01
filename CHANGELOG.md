@@ -12,6 +12,72 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 1.3.209 — Code review: presets carry settings only; Standard shows the phenomena (2026-10-01)
+
+**A user preset could delete your terrain — fixed.** Save User Preset wrote
+the list of objects that Remove Demo Scene is allowed to delete. A preset saved
+in a demo scene and loaded into your own scene switched Remove Demo Scene on,
+and the button then deleted your objects whose names matched the demo's —
+including `TyDunes_Terrain`, the name Create Terrain gives every terrain.
+Measured on 1.3.208: 3 of 3 such objects deleted. Load User Preset also accepted
+`is_initialized`, `is_playing` and the step counter from a hand-edited file,
+leaving the panel claiming a simulation that did not exist.
+
+Presets now carry settings only, in both directions: one table of scene-state
+keys is skipped when saving AND ignored when loading, so presets saved by older
+versions are safe too. The report says how many such keys were ignored. The
+Simple / Standard / Advanced choice is no longer stored in a preset either —
+like the preview grid, it is your own preference, not part of a look.
+
+**Standard mode now shows Extra Phenomena and Multi-Fraction.** 52 controls —
+tides, snow layers, slab avalanches, playa, desert pavement, the two-grain
+model — were declared as Standard controls but sat in panels drawn only in
+Advanced, so in Standard they could not be reached, and the "active hidden
+features" notice did not mention them either. Seven demo scenes rely on them.
+Both panels are now part of Standard. Thirteen performance and debug controls
+had the opposite mismatch and are now marked Advanced, matching their panels;
+what you see in each mode does not change for them.
+
+A new check fails if a control is ever declared at a lower level than every
+panel that draws it, and a new gate (`test_preset_scene_state.py`) runs the
+demo-preset scenario end to end, including a control that must see the
+deletion.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
+
+
+## 1.3.208 — Framing for the two flat Grand Scenes (2026-09-30)
+
+**Living Oasis** and **Dynamic Coast** now have their own camera framing, and
+the other two Grand Scenes are untouched.
+
+The four 400 m scenes shared one composition, and it suits the two that have
+relief: in Desert Expedition and Winter Storm the dunes and drifts close the
+distance by themselves. A rain-fed basin and a shoreline are flat, so from the
+same height — 0.30 of the scene size, 120 m up — they read as coloured patches
+with the far rim of the plate across the top of the frame. The camera now comes
+down to 0.11 and moves in, on a 50 mm lens instead of 43 mm.
+
+Two measurements were taken before this change and BOTH ruled out the obvious
+explanations, which is why they are recorded here rather than quietly dropped:
+
+- **Background area is not the problem.** The scenes that read correctly carry
+  MORE of it: Desert 40.0% and Terrain: Mesa 40.4% of frame, against 26.1% for
+  Oasis and 25.3% for Coast. Sky above a horizon costs nothing.
+- **Neither is the visible edge of the domain.** Projecting the terrain
+  boundary into the frame puts 37 of 84 sampled points inside the image in
+  EVERY scene measured, good-looking or not.
+
+What was actually wrong is not something either number captures: from directly
+above, a flat scene has no form to show. The fix is to frame what these two
+scenes do have — the waterline, the shallows and the shore — which is a
+question for the eye, and was settled by rendering three candidate framings and
+looking at them.
+
+No solver arithmetic, no physical defaults and no other scene changed. The
+shared framing function is untouched; this is an additional branch for the two
+scenes, exactly as Winter Storm already had one.
+
 ## 1.3.207 — Complete Simple workflows (2026-09-28)
 
 - Group starting terrain, starting sand and appearance in workflow order.
