@@ -67,7 +67,7 @@ runs on the CPU, slower.
 
 ## Reporting a bug or asking for a feature
 
-**[Open an issue](https://github.com/looki666/DunesForge/issues/new/choose)**
+**[Open an issue](https://github.com/Forge-Plugins/DunesForge/issues/new/choose)**
 and pick a form:
 
 - **Bug report** — something does not work as the documentation describes.

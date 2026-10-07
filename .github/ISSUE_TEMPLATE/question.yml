@@ -5,7 +5,7 @@ labels: ["question"]
 body:
   - type: markdown
     attributes:
-      value: The [QuickStart](https://github.com/looki666/DunesForge/blob/main/docs/DunesForge_QuickStart.pdf) and the [Reference](https://github.com/looki666/DunesForge/blob/main/docs/DunesForge_Reference.pdf) answer most questions.
+      value: The [QuickStart](https://github.com/Forge-Plugins/DunesForge/blob/main/docs/DunesForge_QuickStart.pdf) and the [Reference](https://github.com/Forge-Plugins/DunesForge/blob/main/docs/DunesForge_Reference.pdf) answer most questions.
   - type: textarea
     id: question
     attributes:

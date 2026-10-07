@@ -12,6 +12,30 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 1.3.210 — Protection against add-ons that use DunesForge's internal names (2026-10-01)
+
+**An older DunesForge3D can no longer silently take DunesForge over.** Up to
+2.56.4, DunesForge3D stored its settings under the same internal name as
+DunesForge (`Scene.tydunes`) and used the same ids for 19 panels and 111
+operators. Blender does not refuse a second add-on with the same names — it
+quietly replaces the first — so with both enabled, whichever started last took
+the other's settings, panels and buttons. Current DunesForge3D builds use names
+of their own and work side by side with DunesForge; this release protects users
+who still have an older copy installed.
+
+- **Older DunesForge3D enabled first:** DunesForge now refuses to start and says
+  why — update DunesForge3D, or disable it. Nothing is half-installed, and the
+  other add-on keeps working.
+- **Older DunesForge3D enabled after DunesForge:** a warning appears once, in a
+  popup and in the system console. (In background renders it goes to the
+  console only — a popup would crash Blender there.)
+- **Disabling DunesForge after such a takeover** no longer stops halfway, leaves
+  the other add-on's settings alone, and DunesForge can be enabled again in the
+  same session.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
+
+
 ## 1.3.209 — Code review: presets carry settings only; Standard shows the phenomena (2026-10-01)
 
 **A user preset could delete your terrain — fixed.** Save User Preset wrote
