@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Documentation (QuickStart, Guide, Reference)
-    url: https://github.com/looki666/DunesForge#documentation
+    url: https://github.com/Forge-Plugins/DunesForge#documentation
     about: Most questions are answered in the QuickStart: section 9 is "When something looks wrong", and the Reference covers every control.
   - name: Private support by e-mail (forgeplugins@gmail.com)
-    url: https://github.com/looki666/DunesForge#reporting-a-bug-or-asking-for-a-feature
+    url: https://github.com/Forge-Plugins/DunesForge#reporting-a-bug-or-asking-for-a-feature
     about: For licence or purchase matters, or anything you would rather not post publicly.
