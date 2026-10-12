@@ -12,6 +12,133 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 1.3.218 — CROSS-SLOPE TRANSPORT: easy to find, checked on every demo (2026-10-12)
+
+The anti-terrace option from 1.3.217 stays **off by default**, but it can no
+longer be missed:
+
+- its name is now in capitals, **CROSS-SLOPE TRANSPORT**;
+- in the Physics panel it sits in its own box, tinted red while it is off,
+  with a one-line "when to use it";
+- in the starting-sand section, a thick layer (Even sand layer 1 m or more,
+  or a terrain that is itself loose sand) shows a tinted hint with the
+  slider right there.
+- it is shown in every UI mode, including Simple (what a new scene opens
+  in) -- it used to be hidden there.
+
+Why not on by default: it was run on all 66 demos at 0, 0.1 and 0.2. No
+errors anywhere and the wind-parallel steps never increase, but it also
+softens small, young dunes and fine detail (Surface Detail, Dune Field demos)
+and lines up the grid noise behind obstacles into cross-wind combs (Desert
+demo). On a thick layer at 512 the terraces are even stronger than at 128
+(9.1 % of the area) and 0.1 removes them there too (2.2 %).
+
+Also: the term now reads the sand flux averaged over the neighbouring cells
+(a saltation hop is longer than a cell), so the flux's own grid ripple is
+not printed into the bed. Only affects scenes with the option on.
+
+## 1.3.217 — Cross-slope transport: no more terraces on thick sand (option) (2026-10-12)
+
+**New: Cross-slope Transport** (Physics, under Cross-wind Shear Smooth).
+Reported: on a fresh terrain with a thick starting sand layer (4.5 m) the field
+grew "plateaus instead of dunes". Measured first that nothing had regressed --
+the same scene is bit-identical in every release back to 1.3.100, on GPU and
+CPU alike. The cause is a missing term: the transport sweep moves sand along
+the wind one streamline at a time, so neighbouring grid rows grow their crests
+in different places and the field breaks into TERRACES, steps running parallel
+to the wind with planar ramps between them. The thicker the layer, the worse
+(cross-wind jaggedness 0.91 / 1.44 / 2.84 / 3.50 at 0 / 1 / 2 / 4.5 m).
+
+The option adds what real saltating sand does: grains landing on a cross-slope
+bounce down it, so part of the flux runs downhill across the wind. It acts
+only where sand is moving and only across the wind, conserves mass exactly and
+never digs below bedrock. Measured on the reported scene (600 frames):
+wind-parallel walls drop from 5.1 % of the area to 2.5 % at 0.1 and 0.6 % at
+0.2, with dunes 10-13 % lower; the result is continuous, sinuous transverse
+dunes. 0.1-0.2 keeps the crests wavy, 0.5 and up makes them long and straight.
+On a GPU it is one fused pass, about 0.5 ms per substep at 1024.
+
+Off by default: every existing scene simulates exactly as before.
+
+## 1.3.216 — Windows GPU paths (2026-10-11)
+
+Use Windows short directory names when available for private CuPy/CUDA loading. GPU verification includes larger indexing and CUDA/CUB header compilation. Reproduced an actual first-step compilation failure in a long path on Blender 5.3; the corrected backend completed terrain, water and checkpoint checks. Documentation synchronized with the current controls.
+
+## 1.3.215 — Smooth bedrock edges (option) (2026-10-09)
+
+**New: Rock Edge Smoothing** (Surface Shader, under Bedrock Threshold). Where
+bare bedrock meets sand, the outline used to follow the triangles of the
+terrain mesh and showed as a pixel staircase up close: the sand mask flips
+from sand to rock within a single cell. With smoothing above 0 the rock/sand
+decision is worked out per vertex, smoothed over that many cells and drawn
+through the middle, so the outline curves instead of stepping. Measured on a
+round patch of bare rock: the rock outline is about 5× smoother at 1.0 and the
+pale thin-sand band around it about 2.5×, with the edge staying in place.
+
+It is off by default and leaves every existing render exactly as it was. Use
+it for large areas of exposed rock; on finely speckled rock (specks one or two
+cells across) or one-cell cliff walls it fades the specks and can draw a
+sawtooth on the walls, so leave it at 0 there.
+
+Also: the Bedrock Threshold description no longer says the sand mask is
+normalised to the field's range — it is sand depth divided by Sand Cover Depth.
+
+No solver arithmetic and no physical defaults changed.
+
+
+## 1.3.214 — Water demo review (2026-10-09)
+
+- Added existing sand-bed friction to Wind On The Lake and Dynamic Coast; field resolution and global solver defaults unchanged.
+- Ice Pack uses partial floe rigidity so fractures and leads can form.
+- Corrected five demo-list descriptions and removed the stale Water Flow scene-card override.
+- Updated PL/EN manuals and runtime control index; rendered and measured water demos with controls.
+
+## 1.3.213 — GPU installer robustness (2026-10-08)
+
+GPU installer: repair damaged settings with backup, respect Blender Online Access, cancel verification, recover from worker/UI errors. PL/EN manuals synchronized.
+
+## 1.3.212 — Review fixes and isolated GPU installation (2026-10-08)
+
+GPU installation now selects CuPy compatible with Blender's bundled NumPy,
+downloads CUDA component wheels and installs into a private user directory.
+Blender's NumPy and bundled packages are never replaced. A generation becomes
+active only after array, NVRTC kernel and FFT checks. Downloading runs in a
+cancellable worker; missing NVIDIA support or a failed download leaves CPU usable.
+
+Additional mask collections refresh after selection and object movement, including
+the final throttled drag. Cancelled starting-sand painting restores previous flags.
+Start / Transport Variation accurately describes both initialization and continuing
+transport, and is visible for all terrain start modes. Numeric checkpoints restore
+Flow2D and Flow3D state; legacy checkpoints restart those fields. Failed solver steps
+restore temporary time scale and warm-up scope. Two CPU-only residual reads now use
+the common host-array helper. Numerical formulas and physical defaults are unchanged.
+
+Offline guides and their complete control indexes are synchronized in MD, HTML and
+PDF, including the expanded English QuickStart and current Simple/Standard/Advanced UI.
+
+## 1.3.211 — Avalanche demos build faster; same result to the bit (2026-10-07)
+
+**The avalanche demos were slow to build, not to render.** Measured: the
+Avalanche Valley demo took 17 minutes after Create Demo and 6 seconds to
+render, and 91 % of the build was the slab-flow solve — 46,515 small time
+steps, the largest avalanche alone 12,000. Three changes cut the cost of each
+step without changing a single number in the result:
+
+- a zero shift of a grid no longer copies the whole grid;
+- the terrain's slope for the avalanche friction is worked out once per
+  terrain instead of at every step;
+- each step reads its time-step limit back from the GPU once instead of three
+  times.
+
+The deposit of a test avalanche is bit-for-bit identical to 1.3.210 on both
+the CPU and the GPU, and each step is about 1.25× faster. The demos are still
+long to build (Avalanche Valley ≈ 14 min, Avalanche and Avalanche Gates ≈ 3–4
+min); a larger speed-up needs the avalanche solver itself to be rebuilt and is
+planned separately.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
+
+
 ## 1.3.210 — Protection against add-ons that use DunesForge's internal names (2026-10-01)
 
 **An older DunesForge3D can no longer silently take DunesForge over.** Up to
