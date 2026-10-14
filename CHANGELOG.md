@@ -12,6 +12,59 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 1.3.220 — Five new shallow-water demos (2026-10-14)
+
+New in the Demo Scene list, all built on the shallow-water field:
+
+- **Water: Puddles After Rain** — wet sand after a shower, with still,
+  mirror-flat puddles in every hollow. Each hollow is found exactly and
+  filled part-way to where it would overflow, so every puddle has a level
+  surface and a dry rim.
+- **Water: A Pond Among Dunes** — the dunes grow first, then the lowest
+  ground between them holds a pond with an irregular, wet shore. Press Play
+  and the dunes keep migrating around (and into) it.
+- **Water: Waterfall From A Lake** — a lake on a rock plateau spills through
+  a notch over a cliff into a plunge pool and runs off downstream.
+- **Water: Flash Flood In A Wadi** — a wall of brown water released at the
+  head of a dry, winding canyon; the flood runs down the sand bed and cuts a
+  channel that stays after the water has gone.
+- **Water: A Sand Dam Breaks** — a pond brims just over the lowest point of
+  its sand dam; the overflow scours a breach and the pond drains through it.
+
+The add-on has no water source, so each scene places its water at the start
+and leaves the rest to the physics: no scripted motion anywhere. Water volume
+is conserved in every scene until it leaves through the open downstream edge.
+
+**Fixed: water erosion cut through the bedrock.** Erosion by flowing water
+did not know where the loose sand ends: it kept lowering the bed for as long
+as the flow could pick grains up, rock included, and with Erosion Target set
+to The Dune Terrain it wrote that into the dunes. Found on the sand-dam
+scene, where 30 seconds of water dug 10.8 m into the rock under the dam. The
+bed now goes down to the bedrock and no further; deposition is unchanged, and
+wherever the flow never reaches the rock the result is exactly as before. The
+dune physics without water erosion is untouched (physics fingerprint
+identical).
+
+## 1.3.219 — Simulation no longer stays frozen after the Airborne demo (2026-10-13)
+
+**Fixed: after the Airborne (dust) demo, Play did nothing.** That demo freezes
+the dunes after its warm-up on purpose — the dunes hold still while the dust,
+dust devils and the wind keep moving — but nothing turned the two freezes off
+again. Measured: after it, a new terrain + Initialize + 20 frames of Play ran
+0 solver steps and moved nothing (without the demo: 100 steps); loading
+another demo afterwards cleared Freeze Dunes but left Freeze Terrain on, so
+that demo was frozen too.
+
+- every demo now starts unfrozen; the Airborne demo still freezes itself
+  after its warm-up, so it looks and plays exactly as before;
+- Create Terrain turns both freezes off for the new terrain and says so;
+- whenever either freeze is on, a red-tinted **DUNES FROZEN** box sits right
+  under Play with both switches, so a frozen scene can no longer look like a
+  broken one.
+
+No solver arithmetic and no physical defaults changed.
+
+
 ## 1.3.218 — CROSS-SLOPE TRANSPORT: easy to find, checked on every demo (2026-10-12)
 
 The anti-terrace option from 1.3.217 stays **off by default**, but it can no
