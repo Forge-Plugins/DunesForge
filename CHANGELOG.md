@@ -12,6 +12,23 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 1.3.221 — Every demo scene file rebuilt (2026-10-14)
+
+All 71 saved demo scenes are rebuilt with the current version. Eleven of the
+shipped files dated from August and were missing switches added since (dust
+on snow, Water Wets The Sand, splashes, tide following, bodies of water and
+others), and 25 demos had no saved file at all; every one now opens with the
+features its card describes.
+
+Three Grand Scenes and the "What Objects Tell The Sand" showcase could not be
+saved before: the check that guards which demos wear the surface shader did
+not know that a Grand Scene wears what its base scene wears, nor that the
+ground-rules showcase deliberately uses its own flat material. Both rules
+are now stated where the check reads them.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
+
+
 ## 1.3.220 — Five new shallow-water demos (2026-10-14)
 
 New in the Demo Scene list, all built on the shallow-water field:
