@@ -6,22 +6,33 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time. Before you start: in Blender open
-        the **DunesForge** tab (N-panel) and use **GPU Self-Check** - it reports which backend is active and what your card is.
-        Paste that into the "Details" field below.
+        Thank you for taking the time. Two things help most: the **version**
+        shown at the top of the DunesForge panel (press **N** in the 3D
+        viewport, **DunesForge** tab), and the **log file** - click
+        **Open Log Folder** in the main panel and attach `tydunes.log` below.
+        The [Troubleshooting guide](https://github.com/Forge-Plugins/DunesForge/blob/main/docs/DunesForge_Troubleshooting.pdf)
+        may already have the answer.
   - type: input
     id: df_version
     attributes:
       label: DunesForge version
-      description: the add-on entry in Preferences > Get Extensions
-      placeholder: "1.0.0"
+      description: shown at the top of the panel, for example "DunesForge build 0.85.0 beta"
+      placeholder: "0.85.0"
     validations:
       required: true
   - type: input
     id: blender_version
     attributes:
       label: Blender version
-      placeholder: "5.3 (or 4.2, 4.4 ...)"
+      placeholder: "5.3 (or 4.2, 4.5 ...)"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system and graphics card
+      description: and whether the panel says "GPU Acceleration ACTIVE" or "UNAVAILABLE"
+      placeholder: "Windows 11, NVIDIA RTX 4070, GPU Acceleration ACTIVE"
     validations:
       required: true
   - type: textarea
@@ -30,9 +41,9 @@ body:
       label: What happened
       description: What did you do, what did you expect, and what happened instead?
       placeholder: |
-        1. Selected an Editable Poly at polygon level
-        2. Held Alt+1 and aimed east (Inset)
-        3. Expected ... but ...
+        1. Opened the demo "Desert" (or: my own terrain, 512 x 512)
+        2. Clicked Initialize Simulation, then pressed Play
+        3. Expected the dunes to move, but ...
     validations:
       required: true
   - type: dropdown
@@ -40,11 +51,14 @@ body:
     attributes:
       label: Where
       options:
-        - A dial (opening, aiming, running a command)
-        - The hotbox
-        - The menu editor
-        - Keyboard shortcuts / mouse buttons
         - Installation or update
+        - GPU backend (CuPy)
+        - Sand, dunes, snow or wind
+        - Water, rain or moisture
+        - A demo scene
+        - Look, material or render
+        - Export or bake
+        - Interface and panels
         - Documentation
         - Something else
     validations:
@@ -60,18 +74,10 @@ body:
     validations:
       required: true
   - type: textarea
-    id: details
-    attributes:
-      label: Details from "Report a bug..."
-      description: Paste (Ctrl+V) what DunesForge > Report a bug... copied to the clipboard.
-      render: text
-    validations:
-      required: false
-  - type: textarea
     id: extra
     attributes:
-      label: Screenshots or anything else
-      description: Drag images here. If one dial is involved, a preset of it (editor > Save preset...) helps a lot.
+      label: Log file, screenshots, scene
+      description: Drag tydunes.log and screenshots here. If you can, attach a small .blend that shows the problem (zip it first).
   - type: checkboxes
     id: checks
     attributes:

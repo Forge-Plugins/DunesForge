@@ -5,12 +5,34 @@ not reconstructed afterwards. Where a version shipped a measurement, the number
 quoted is the one that was measured — including the cases where the measurement
 said a feature was not worth shipping and it was taken back out.
 
-> **On version numbers.** The numbering here is the internal build history.
+> **On version numbers.** 0.85.0 is the first public beta and starts the
+> public numbering; the 1.3.x entries below it are the internal build history.
 > Nothing in this list changes an existing scene unless it says so: every
 > physical feature is an option that is OFF at its default, and at that default
 > the solver runs the same arithmetic it ran before the feature existed.
 
 ---
+
+## 0.85.0 — First public beta (2026-10-18)
+
+**Version numbers restart for the beta.** 0.85.0 is the first build handed to
+beta testers and follows internal build 1.3.221; everything below this entry
+is the internal history that led to it. The add-on's identifier does not
+change, so installed copies update in place and saved scenes open as before.
+
+**The add-on is now called DunesForge everywhere you see it** -- the name in
+Blender's add-on list, the sidebar tab, panel headings, tooltips, messages
+and every manual. Internal names stay as they were: objects, materials and
+node groups created by the add-on keep their `TyDunes_...` / `TyDunes ...`
+names, so scenes saved before this version keep working.
+
+**New manuals for testers:** a short **Getting Started** (ten minutes from
+install to your first dune field) and **Troubleshooting** (the most common
+problems and what to do about each), in English and Polish. The QuickStart
+and Installation guides lost their old per-version notes and now start with
+the current beta.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
 
 ## 1.3.221 — Every demo scene file rebuilt (2026-10-14)
 

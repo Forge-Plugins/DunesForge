@@ -1,5 +1,5 @@
 name: Feature request
-description: An idea for a new dial, command, option or improvement.
+description: An idea for a new control, demo scene, workflow or improvement.
 title: "[Idea] "
 labels: ["enhancement"]
 body:
@@ -7,7 +7,7 @@ body:
     id: goal
     attributes:
       label: What would you like to do?
-      description: Describe the task, not only the solution - "I switch between these three modifiers all the time" says more than "add a button".
+      description: Describe the task, not only the solution - "I want sand to pile up behind a moving vehicle" says more than "add a button".
     validations:
       required: true
   - type: textarea
@@ -18,17 +18,20 @@ body:
     id: proposal
     attributes:
       label: How could DunesForge help?
-      description: A dial, a direction, an option, a gesture... any idea is welcome.
+      description: A control, a demo scene, a workflow... any idea is welcome.
   - type: dropdown
     id: area
     attributes:
       label: Area
       options:
-        - Built-in dials
-        - Gestures and the dial itself
-        - The hotbox
-        - The menu editor
-        - Shortcuts / mouse buttons
+        - Sand and dunes
+        - Snow
+        - Water and rain
+        - Wind and obstacles
+        - Look, material or render
+        - Demo scenes
+        - Export or bake
+        - Interface
         - Documentation
         - Other
   - type: checkboxes

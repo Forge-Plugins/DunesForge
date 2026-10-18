@@ -17,6 +17,9 @@ wind erosion, on the GPU, in the viewport.
 This repository holds the **documentation, release notes and the issue
 tracker**. The add-on itself is sold separately; there is no source code here.
 
+**Current version: 0.85.0 beta** - the first public beta. See the
+[release notes](CHANGELOG.md).
+
 ## Highlights
 
 - **Real aeolian physics** — Jackson–Hunt shear with lee-side flow separation
@@ -51,7 +54,9 @@ scene that ships with the add-on.
 
 | Document | What it covers |
 |---|---|
-| [QuickStart & Handbook](docs/DunesForge_QuickStart.pdf) | 16 tutorials, how the simulator works, a tour of every panel, a glossary — **start here** |
+| [Getting Started](docs/DunesForge_GettingStarted.pdf) | ten minutes from installing to your first dune field — **start here** |
+| [Troubleshooting](docs/DunesForge_Troubleshooting.pdf) | the most common problems and what to do about each |
+| [QuickStart](docs/DunesForge_QuickStart.pdf) | a working guide from your first scene to a finished shot, with exercises |
 | [Installation Guide](docs/DunesForge_Installation_Guide.pdf) | installing, GPU setup, what to do without a CUDA card |
 | [Reference](docs/DunesForge_Reference.pdf) | every control in every panel, with defaults and when to reach for it |
 | [Overview](docs/DunesForge_Overview.pdf) | what the product is and the problem it solves |
@@ -73,6 +78,10 @@ and pick a form:
 - **Bug report** — something does not work as the documentation describes.
 - **Feature request** — an idea for a new control, demo scene or workflow.
 - **Question** — how do I…?
+
+For a bug, please give the version shown at the top of the DunesForge panel
+and attach **tydunes.log** — the **Open Log Folder** button in the main panel
+opens the folder that holds it.
 
 Prefer e-mail? Write to **forgeplugins@gmail.com** — the same address takes bug
 reports, feature requests and support questions. Please do not post licence or
