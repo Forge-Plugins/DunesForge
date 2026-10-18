@@ -13,6 +13,27 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.2 — GPU install for Windows user names with Polish letters (2026-10-18)
+
+**The GPU backend now installs when the Windows user name contains letters
+such as ł, ó or ż.** Testing the installer on a brand-new profile under such
+a folder showed every library downloading and installing, and then NVIDIA's
+compiler stopping with "cannot open source file cupy/complex.cuh": it cannot
+read files under a path with those letters. The earlier workaround (the
+short 8.3 name Windows can give a folder) only helps where Windows creates
+those names, which is not everywhere. The installer now falls back to a
+folder link with a plain name in `C:\ProgramData\DunesForge\gpu-links`; the
+libraries stay in your user folder. The same happens for the temporary folder
+and CuPy's kernel cache, both of which also live in the user folder: the
+compiler opens each kernel from there. The same files through those links
+pass the whole GPU check. Found on Blender 5.2 (CuPy 14) and 4.4 (CuPy 13).
+
+**A failed GPU check now names its cause** instead of the compiler's last
+line ("Compilation terminated."), and the full compiler message is written
+to the installation log that the error points to.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
+
 ## 0.85.1 — Activity log, beta notes, add-on conflicts (2026-10-18)
 
 **The log now records what you did.** tydunes.log lists every DunesForge
