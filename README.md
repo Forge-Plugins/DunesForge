@@ -17,7 +17,7 @@ wind erosion, on the GPU, in the viewport.
 This repository holds the **documentation, release notes and the issue
 tracker**. The add-on itself is sold separately; there is no source code here.
 
-**Current version: 0.85.0 beta** - the first public beta. See the
+**Current version: 0.85.1 beta** - the public beta. See the
 [release notes](CHANGELOG.md).
 
 ## Highlights
@@ -54,6 +54,7 @@ scene that ships with the add-on.
 
 | Document | What it covers |
 |---|---|
+| [Beta Tester Notes](docs/DunesForge_BetaNotes.pdf) | for beta testers: what to try, known limitations, how to report and what the log contains |
 | [Getting Started](docs/DunesForge_GettingStarted.pdf) | ten minutes from installing to your first dune field — **start here** |
 | [Troubleshooting](docs/DunesForge_Troubleshooting.pdf) | the most common problems and what to do about each |
 | [QuickStart](docs/DunesForge_QuickStart.pdf) | a working guide from your first scene to a finished shot, with exercises |

@@ -13,6 +13,36 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.1 — Activity log, beta notes, add-on conflicts (2026-10-18)
+
+**The log now records what you did.** tydunes.log lists every DunesForge
+button you press, the settings you changed before pressing it, how it ended
+and how long it took, and the full error when one fails. Caught errors during
+playback, which used to appear only in the system console, are written there
+too (a failure repeating every frame is written once per 30 seconds, with a
+count). Nothing is written per frame or per redraw; a logged button press
+costs about 7 ms (measured), most of it making sure the line is on disk.
+
+**Beta buttons at the very top of the panel:** **Beta Tester Notes** (what to
+try, known limitations, what the log contains) and **Report a Bug** (the
+GitHub issue forms). Under **Open Log Folder** the panel now asks to attach
+tydunes.log to every report.
+
+**Troubleshooting** gained a section on other add-ons: add-ons that bring
+their own CUDA libraries (a known case is BlendLuxCore), a NumPy changed by
+another add-on, and old copies of DunesForge3D. Also new: what to do when
+Install from Disk fails and when the GPU download is blocked by a firewall.
+Getting Started gives the real size of the GPU download (about 1 to 2 GB).
+
+**The rest of the add-on now says DunesForge too:** the add-on conflict
+message, the painting and wind-gizmo status bar text, GPU messages and the
+log header.
+
+**Tester packages are numbered:** every build also leaves
+`DunesForge_<version>_beta.zip` and its SHA-256 next to it.
+
+No solver arithmetic, no physical defaults and no scene contents changed.
+
 ## 0.85.0 — First public beta (2026-10-18)
 
 **Version numbers restart for the beta.** 0.85.0 is the first build handed to
