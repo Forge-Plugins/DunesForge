@@ -13,6 +13,36 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.5 — PDF manuals, Blender 5.1 minimum, English everywhere (2026-10-19)
+
+**The manuals ship as PDF only.** The add-on package no longer carries the
+Markdown and HTML copies of the guides. The help buttons, the **?** icon on
+each panel and **Explain this DunesForge option** open the PDF at the right
+chapter or option in Adobe Acrobat or Reader, SumatraPDF and the PDF viewers
+of web browsers; other viewers open the guide at its first page. Links from
+one guide to another also open the right page now, not the first one. The
+guides open in English by default (**EN** / **PL** next to **Guides**).
+
+**Blender 5.1 is the supported minimum.** DunesForge still installs on
+Blender 4.2 to 5.0 and may work there, but those versions have not been
+thoroughly tested; the panel says so on them.
+
+**All messages are in English.** The Diagnose panel, the wind regime readout
+and two hints were still in Polish.
+
+**Diagnose now warns when 3D Wind runs without the GPU.** The warning checked
+for a wind model that does not exist, so it never appeared.
+
+**Beta Tester Notes:** where to look first and where to ask (the manuals, then
+Discord); how to stop slopes from piling up too steep with **Settle Slopes**
+(every step, 10 to 20 rounds), the cheaper alternative to **Avalanche
+Trigger**; and what the wind solver modes do -- **Flow 2D** for the most
+realistic wind, **Flow 3D** for even more accuracy at a much higher cost.
+
+**The guides were checked against the add-on**: button and option names now
+match the panel, demos are called by the names in the demo list, experimental
+water demos are marked as such, and outdated statements were corrected.
+
 ## 0.85.4 — No more terraces on thick sand with the default settings (2026-10-19)
 
 **Thick sand forms real dunes again with the default settings.** Since 1.3.12

@@ -54,7 +54,7 @@ scene that ships with the add-on.
 
 | Document | What it covers |
 |---|---|
-| [Beta Tester Notes](docs/DunesForge_BetaNotes.pdf) | for beta testers: what to try, known limitations, how to report and what the log contains |
+| [Beta Tester Notes](docs/DunesForge_BetaNotes.pdf) | for beta testers: where to ask, what to try, slopes that pile up too steep, the wind solver modes, known limitations and how to report |
 | [Getting Started](docs/DunesForge_GettingStarted.pdf) | ten minutes from installing to your first dune field — **start here** |
 | [Troubleshooting](docs/DunesForge_Troubleshooting.pdf) | the most common problems and what to do about each |
 | [QuickStart](docs/DunesForge_QuickStart.pdf) | a working guide from your first scene to a finished shot, with exercises |
@@ -67,9 +67,10 @@ Release notes: [CHANGELOG.md](CHANGELOG.md)
 
 ## Requirements
 
-Blender 4.2 or newer (tested through 5.3), Windows or Linux. An NVIDIA CUDA
-card is recommended and makes it interactive; without one the same simulation
-runs on the CPU, slower.
+Blender 5.1 or newer, tested on Windows with Blender 4.4 to 5.3. Versions from
+4.2 to 5.0 may work, but they have not been thoroughly tested; Linux and macOS
+have not been tested yet. An NVIDIA CUDA card is recommended and makes it
+interactive; without one the same simulation runs on the CPU, slower.
 
 ## Reporting a bug or asking for a feature
 

@@ -30,9 +30,9 @@ Each frame is the solver advancing - nothing here is keyframed.
 
 A 400 m snowfield with layered drifts, density, slabs, shelter and snow-fed vortices
 
-### Grand Scene: Dynamic Coast
+### Grand Scene: Dynamic Coast (Experimental)
 
-![Grand Scene: Dynamic Coast](images/MEGA_COAST.jpg)
+![Grand Scene: Dynamic Coast (Experimental)](images/MEGA_COAST.jpg)
 
 A 400 m coast with Flow 2D wind, shallow water, waves, sediment, rain and vegetation
 
@@ -156,9 +156,9 @@ A block of buildings on an open plain being swallowed by sand: each one casts a 
 
 ## Water, rain and ice
 
-### Ice: Pack, Ridges and Leads
+### Ice: Pack, Ridges and Leads (Experimental)
 
-![Ice: Pack, Ridges and Leads](images/ICE_PACK.jpg)
+![Ice: Pack, Ridges and Leads (Experimental)](images/ICE_PACK.jpg)
 
 The ice mechanics of 1.3.134-1.3.138 in one scene: a frozen basin kept ALIVE by a steady inflow, so the pack never settles. The current carries the sheet, piles it against the shore into RIDGES where it converges and pulls it open into LEADS where it diverges -- all three out of one conservative flux, with no extra rule. MEASURED, and this is why the demo exists: on the Pools That Flow terrain the water reaches equilibrium and the ice sampled a LIVE current in only 2 of 20 steps, so none of it could be seen. With the inflow on it is 20 of 20. Try Ice Yield Strength 20 -> 0 and watch the ridge turn into an even thickening
 
@@ -192,21 +192,21 @@ Water table AND rain at the same time: two independent sources feeding one wetne
 
 Sand placed in valleys around a shallow water table with a translucent water plane: wet shores lock in place while dry sand keeps migrating around them
 
-### Water: Pools That Flow
+### Water: Pools That Flow (Experimental)
 
-![Water: Pools That Flow](images/WATER_FLOW.jpg)
+![Water: Pools That Flow (Experimental)](images/WATER_FLOW.jpg)
 
 The SAME oasis as above, with the water given a depth field instead of one global level -- so every hollow settles to its own height, water runs downhill between them and the shore is wherever the ground says. Built as a direct A/B against the Oasis demo: same terrain, same warmup, one switch different
 
-### Water: Reservoir Behind A Sluice Gate
+### Water: Reservoir Behind A Sluice Gate (Experimental)
 
-![Water: Reservoir Behind A Sluice Gate](images/WATER_SLUICE.jpg)
+![Water: Reservoir Behind A Sluice Gate (Experimental)](images/WATER_SLUICE.jpg)
 
 A rock plateau with a 6 m basin, a dam with a 16 m gap and a valley below. The basin holds 1.5 m of water above the sill; a red gate in the gap is an ordinary obstacle that, with Water Sees the Rocks on, is part of the water bed and holds the water back. It is KEYFRAMED to lift 24 m from frame 20: press Play and the reservoir pours down the valley as a shallow-water flood. MEASURED on a fixture of this geometry: without the gate 7.8 % of the water is below the dam after 20 s and 34.8 % after 120 s, with the gate 0.0 % for 120 s, gate removed at 40 s -> the same curve shifted by 40 s; mass 1.0000. Try Water Sees the Rocks off: the flood starts at once
 
-### Water: Wind On The Lake
+### Water: Wind On The Lake (Experimental)
 
-![Water: Wind On The Lake](images/WATER_WIND.jpg)
+![Water: Wind On The Lake (Experimental)](images/WATER_WIND.jpg)
 
 The flowing field with a 30 m/s wind gripping the surface. The water piles up on the DOWNWIND shore at a slope of exactly tau/(rho g h), so the shoreline moves and the pools lean. MEASURED on this terrain at 30 m/s against no wind, after 3 s of water time: 7699 cells cross between wet and dry -- 4010 flooded and 3689 drained -- and the surface stands 13.7 mm apart at most. The wind here is the ANALYTIC one, so it is the same everywhere; switch Wind Model to Flow 2D and give the flow an Air Layer to have crests and lee pockets push the water differently
 
@@ -294,9 +294,9 @@ A succulent and a grass on the same dune, which is the commonest arrangement on 
 
 Two rock walls with a gap. The solved wind speeds up through the gap because the same air has to pass a narrower opening -- a result of mass conservation, not of a correction term
 
-### Water: Ripples Carried By The Current
+### Water: Ripples Carried By The Current (Experimental)
 
-![Water: Ripples Carried By The Current](images/FLOW_RIPPLES.jpg)
+![Water: Ripples Carried By The Current (Experimental)](images/FLOW_RIPPLES.jpg)
 
 The Pools That Flow basin with a DEAD SWELL pumping it, so the current never settles -- and that is the whole condition of this scene. Flow Ripples makes the fine chop read the FLOW FIELD instead of an independent noise: the pattern stretches along the current and twists where it turns. MEASURED on this scene: straight after the warm-up the basin is in EQUILIBRIUM -- peak speed 0.0 and 0.0 % of cells moving -- so the knob changes 0.000 % of the pixels, because there is no flow to read. With the swell on: peak 36.15, mean 0.218, 70.4 % of cells alive, and the same knob changes 4.69 % of the pixels on the built scene (4.84 % on the gate fixture) against 0.000 % render noise. Try Flow Ripples 2.5 -> 0: the chop goes back to an independent noise that does not know where the water is going. Try Swell Height 0: the basin settles, the current dies, and the knob stops mattering -- which is the same trap the Ice: Pack scene documents
 
