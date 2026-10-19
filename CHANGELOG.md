@@ -13,6 +13,58 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.4 — No more terraces on thick sand with the default settings (2026-10-19)
+
+**Thick sand forms real dunes again with the default settings.** Since 1.3.12
+a thick starting layer (about 1 m and more) tended to break into flat steps
+running along the wind instead of dunes. Running the same scene on twenty
+older versions found the change: in 1.3.12 several physics options started
+switched on, and two of them together -- **Crest Shear Ceiling** and
+**Saltation Feedback (Owen)** -- caused it. Neither does it alone, which is
+why turning only one off never helped. Both, and **Slope Affects Threshold**,
+which adds to it, are now off by default (0), as their own tooltips always
+said. Measured on the reported scene: the along-wind banding drops from 3.50
+to 1.25 (1.0 means none) and the dunes are about 70 % taller, as they were
+before 1.3.12.
+
+**The tooltips of every option that can make terraces now say so**, and the
+red hint at the sand layer appears only when both options are switched on.
+CROSS-SLOPE TRANSPORT stays available but is no longer needed with the
+defaults. Scenes saved before 0.85.4 keep the values they were saved with.
+
+## 0.85.3 — Demo terrain and water survive Reset; shallow water marked Experimental (2026-10-19)
+
+**Reset Simulation brings back a demo's own landscape.** Twelve demos shape
+their ground in code after Initialize -- the water scenes (pond, waterfall,
+wadi, sand dam, puddles, sluice), the four avalanche slopes and the two
+gravity walls. Reset used to bring back the flat sand from before the
+sculpting, and Initialize generated it again. The sculpted ground, with its
+rock floor, is now the scene's start: Reset and Initialize give it back.
+
+**Reset clears the flowing water, and Initialize puts the demo's starting
+water back.** The shallow-water field used to survive Reset, so a scene
+initialised again kept the previous run's water.
+
+**Building a water demo a second time no longer fails** with "Height array
+size ... does not match vertex count" when Render Subdiv was left above 1.
+
+**Reset with Render Subdiv above 1 no longer loses what was painted before
+Initialize.** Rebuilding the terrain to the simulation grid dropped the
+masks painted before Initialize, the committed start and their copies; they
+are now carried across.
+
+**Shallow water is marked Experimental** -- the Shallow-Water Simulation
+switch, its tooltips and the eleven demos that use it, with a note in the
+panel. It needs deeper integration and will probably arrive in a version
+after the first release (1.0). The simple water level, rain and moisture are
+not affected.
+
+**Wind Sweep now defaults to Exact Bilinear** (the wind at its true angle,
+no snapping to 8 directions), and every demo uses it. On the GPU it costs the
+same; on the CPU the add-on still falls back to the 8-direction sweep above
+its work limit. Scenes that never changed this setting use the new default
+when opened.
+
 ## 0.85.2 — GPU install for Windows user names with Polish letters (2026-10-18)
 
 **The GPU backend now installs when the Windows user name contains letters

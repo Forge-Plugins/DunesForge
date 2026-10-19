@@ -17,7 +17,7 @@ wind erosion, on the GPU, in the viewport.
 This repository holds the **documentation, release notes and the issue
 tracker**. The add-on itself is sold separately; there is no source code here.
 
-**Current version: 0.85.2 beta** - the public beta. See the
+**Current version: 0.85.4 beta** - the public beta. See the
 [release notes](CHANGELOG.md).
 
 ## Highlights
