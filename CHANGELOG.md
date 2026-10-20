@@ -13,6 +13,45 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.8 — Rain shader renders on Blender 5.1 (2026-10-20)
+
+**The rain demos no longer render a black terrain in Blender 5.1.** On
+Blender versions before 5.2, Cycles refused the rain shader ("out of SVM stack
+space") and drew the terrain black. This hit every demo built on the
+**2 - Rain + scans** variant: the rain scenes, the oasis, the playa, the tide
+and the shallow-water puddles. Measured on the RAIN demo: the ground came out
+at 0.06 brightness instead of 0.52. Below 5.2 that variant now leaves texture
+bombing out, which is enough for it to compile. **Full** cannot hold rain
+together with procedural detail there in any combination, so below 5.2 it is
+built without rain and says so; for rain use **2 - Rain + scans**. Both choices
+are remembered and come back when you pick another variant. Blender 5.2 and
+newer are unchanged: they compile everything. If you tick rain by hand in a
+combination that will not compile, the panel and the build message now warn
+before you render.
+
+## 0.85.7 — Animated source maps use the current frame (2026-10-19)
+
+Playback now samples an animated sand-source map before simulating its frame.
+Its independent refresh handler could run after the simulation handler, leaving
+Playback one image behind Run Steps. A changing source-image sequence exposed
+4.28 cm of terrain difference after eight steps. Both paths now use the same
+frame. Initialize now seeds maps assigned before a solver existed, and Step
+and static Run Steps read the current image before computing. Paused timeline
+scrubbing still updates the map. No solver arithmetic
+or physical defaults changed.
+
+## 0.85.6 — Run Steps follows animated objects (2026-10-19)
+
+Run Steps now evaluates successive Blender frames in animated scenes, using
+Steps/Frame to map solver steps to animation frames. Moving obstacle and source
+masks, animated wind settings, source-map sequences and object imprints are
+updated before their frame is simulated. Parents, drivers, NLA and shape keys
+are included. A partial frame continues on the next press. The timeline stays
+at the last simulated frame and never wraps at End. Static scenes retain the
+original fast batch and current frame. Record Evolution records each evaluated
+animation frame. Own frame handlers cannot double-step a batch or replace its
+terrain with a bake viewer. External simulations still require valid caches.
+
 ## 0.85.5 — PDF manuals, Blender 5.1 minimum, English everywhere (2026-10-19)
 
 **The manuals ship as PDF only.** The add-on package no longer carries the
