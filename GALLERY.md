@@ -210,6 +210,36 @@ A rock plateau with a 6 m basin, a dam with a 16 m gap and a valley below. The b
 
 The flowing field with a 30 m/s wind gripping the surface. The water piles up on the DOWNWIND shore at a slope of exactly tau/(rho g h), so the shoreline moves and the pools lean. MEASURED on this terrain at 30 m/s against no wind, after 3 s of water time: 7699 cells cross between wet and dry -- 4010 flooded and 3689 drained -- and the surface stands 13.7 mm apart at most. The wind here is the ANALYTIC one, so it is the same everywhere; switch Wind Model to Flow 2D and give the flow an Air Layer to have crests and lee pockets push the water differently
 
+### Water: Puddles After Rain (Experimental)
+
+![Water: Puddles After Rain (Experimental)](images/WATER_PUDDLES.jpg)
+
+Rain has stopped: flat-surfaced puddles stand in every hollow of wet sand
+
+### Water: A Pond Among Dunes (Experimental)
+
+![Water: A Pond Among Dunes (Experimental)](images/WATER_POND.jpg)
+
+An interdune pond with a wet shore; the dunes keep migrating around it
+
+### Water: Waterfall From A Lake (Experimental)
+
+![Water: Waterfall From A Lake (Experimental)](images/WATER_FALLS.jpg)
+
+A plateau lake spills through a notch over a cliff into a plunge pool and a river
+
+### Water: Flash Flood In A Wadi (Experimental)
+
+![Water: Flash Flood In A Wadi (Experimental)](images/WATER_WADI.jpg)
+
+A wall of water runs down a dry winding valley and cuts a lasting channel in the sand
+
+### Water: A Sand Dam Breaks (Experimental)
+
+![Water: A Sand Dam Breaks (Experimental)](images/WATER_BREACH.jpg)
+
+A brimming pond overtops its sand dam; the overflow scours a breach and drains it
+
 ---
 
 ## Snow, frost and avalanches
