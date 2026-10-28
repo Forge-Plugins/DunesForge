@@ -13,6 +13,35 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.15 — Fed piles keep the angle of sand by themselves (2026-10-28)
+
+**A Sand Source no longer builds spikes and towers with the default settings.**
+Where sand keeps arriving, the slopes used to climb to 60-78 degrees against a
+natural angle of 34, and the fix -- Settle Slopes -- had to be switched on by
+hand. A new option, **Auto Settle Fed Piles** (on by default, Physics panel,
+Advanced), now does it whenever a Sand Source feeds the scene and Settle Slopes
+is left at 0: it settles every 4 steps, the value the presets use, which keeps
+fed piles at about 34 degrees for 3-13 % more time per step (measured on the
+GPU at 512 and 1024). A value you set by hand always wins, and unticking the
+option brings back the old behaviour. The panel says when it is active.
+
+**Avalanche Trigger's tooltip now gives measured numbers.** It claimed the
+option costs about seven times a whole step; measured on a fed pile it costs
+36 % more to 2.6 times as much, still more than Settle Slopes.
+
+## 0.85.14 — 3D Wind no longer runs unseen (2026-10-28)
+
+**The Wind panel now says when 3D Wind is still running.** The 3D Wind
+checkbox sits inside the Flow 2D settings, but the simulation uses it whenever
+it is ticked. After switching the Wind Model back to Analytic the checkbox
+disappeared from view while the costly 3D wind kept running on every step.
+The panel now shows a red note in that case, pointing to where to switch it
+off. Nothing else changes.
+
+**The release notes had garbled characters.** Degree signs, accented letters
+and dashes in older entries had been saved with the wrong encoding; they are
+restored, and a check now keeps the documentation free of such damage.
+
 ## 0.85.13 — The default surface shader shows sand (2026-10-25)
 
 **Add Surface Shader on a new terrain no longer paints black, hexagon-edged
