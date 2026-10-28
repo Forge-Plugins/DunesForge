@@ -13,6 +13,94 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.13 — The default surface shader shows sand (2026-10-25)
+
+**Add Surface Shader on a new terrain no longer paints black, hexagon-edged
+patches.** A new scene had no scanned sand set chosen, but the material still
+built the scanned-sand layer and blended its empty image slots -- which read as
+black -- into the sand in large patches; the hexagonal tiling then cut those
+patches into hexagons. Add Fast Surface did not use the scans, so it looked
+right. The first time a scene gets its surface shader it now receives the same
+sand pair the demos use (Sand Fine and Sand Rippled). If you clear both slots
+on purpose, the scanned layer is left out instead of turning black. Applying a
+preset also picks those sand scans; it used to take the first two in the list,
+which were gravel and rock scree. Existing scenes get the sand pair the next
+time you click Add or Rebuild Surface Shader.
+
+## 0.85.12 — GPU works again in Blender 5.4 (2026-10-25)
+
+**In Blender 5.4 the GPU was slower than the CPU, and now it is fast again.**
+Blender 5.4 changes how its main thread handles the very smallest floating-point
+numbers, and the CUDA compiler that DunesForge's GPU libraries run inside
+Blender then refused to build part of its code. The GPU libraries showed as
+installed, but every simulation step tried to build that code again and failed:
+Play ran at well under one frame a second. DunesForge now gives the compiler
+the setting it needs only while it compiles and gives Blender its own setting
+back straight after, so Blender itself behaves exactly as before. Measured at
+512 x 512 on an RTX 3090 in Blender 5.4: 7 to 10 ms per step on the GPU against
+300 to 860 ms on the CPU, the same as Blender 5.2. The first start after the
+update compiles the GPU code once (a few seconds); later starts reuse it.
+
+## 0.85.11 — Stop and resume Run Steps; protect recorded frames (2026-10-22)
+
+Run Steps invoked from the panel now runs as a modal job. Escape stops after
+its current computation chunk and keeps completed terrain, counters, animation
+frame and any unfinished Steps/Frame work. Batch becomes the remaining step
+count, so pressing Run Steps again completes the original request. Scripts and
+background jobs retain the synchronous EXEC_DEFAULT API. Dense mask evaluation
+and GPU kernels finish before the next cancellation boundary.
+
+Completed static chunks update their step count immediately. Previously an
+exception after 25 successful steps could leave the UI at zero. Animated
+batches keep their prepared-frame cursor across orderly stops; a partial frame
+resumes its sampled inputs without adding a second imprint. Timers, progress
+and scene-evaluation guards are cleaned up on completion and stop.
+
+Recorded heightfields are written to a temporary sibling file and replaced
+only after a successful write. A failed replacement leaves the previous valid
+frame intact. This protects ordinary I/O failures, not loss of the entire disk
+or a guarantee of recovery from power loss. The guides explain disk usage,
+partial-frame recording and the difference between replay and a full solver
+checkpoint. Esc continuation is for the same running Blender session.
+
+## 0.85.10 — Cached Geometry Nodes mesh instances affect the terrain (2026-10-21)
+
+A baked Geometry Nodes simulation that outputs unrealized mesh instances now
+works as a sand/snow source, obstacle or object imprint. Previously its evaluated
+mesh component could be empty, so DunesForge silently sampled no footprint even
+though Blender displayed moving objects. Rasterization and fast-motion sampling
+now include generated instances, mixed mesh/instance output and nested mesh
+instances. Node graphs, external bakes and solver arithmetic are unchanged.
+Particle instances are not added to object masks by this change.
+
+Run Steps now also detects modifiers with an Animation Bake node, including
+when the original time/animation nodes have been removed after baking. Blender
+could still read moving cached geometry, while Run Steps incorrectly held the
+current frame as if the scene were static. Still-only bakes keep the static path.
+
+Real disk-baked Cloth, Rigid Body and Geometry Nodes scenes are checked against
+an independent evaluated-geometry ray oracle, Playback and split Run Steps.
+The new guide section explains baking, saved frame ranges and moving the scene
+with its external cache folders. DunesForge does not bake external systems or
+extend their saved range automatically.
+
+## 0.85.9 — Fast animated objects leave continuous footprints (2026-10-21)
+
+Run Steps and Playback now sample fast sand/snow emitters, obstacles and
+object imprints between frames using evaluated Blender subframes, including
+parents, constraints, rotation and mesh deformation. Source masks are averaged
+in time, so extra samples do not multiply the emission. Obstacle masks use a
+conservative swept envelope for the simulated frame and return to the final
+pose afterwards. Prints combine contact over the motion once; an airborne
+foot still leaves a gap. A frame split across Run Steps presses resumes with
+the same integrated inputs. Solver-step counts and static batches are unchanged.
+
+Sampling adds object-evaluation cost. Footprints must be resolved by the
+simulation grid. Extreme motion above 8192 segments per evaluated frame stops
+with an explanation rather than silently skipping contacts. This change does
+not introduce general 3D object pushing or a full fluid collision solver.
+External simulations still need valid caches and subframe evaluation.
+
 ## 0.85.8 — Rain shader renders on Blender 5.1 (2026-10-20)
 
 **The rain demos no longer render a black terrain in Blender 5.1.** On
