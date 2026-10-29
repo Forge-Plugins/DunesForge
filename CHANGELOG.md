@@ -13,6 +13,28 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.18 — Rain demos show the sand detail (2026-10-29)
+
+**The five rain demos (Rain, Monsoon, Oasis, Drying, Rain on Water) now open
+on the shader variant 5 - Rain + detail.** They used to open on 2 - Rain +
+scans, which turns the procedural sand detail -- macro shading, grain,
+ripples, dunelets, strata -- down to zero. Since 0.85.16 rain renders together
+with that detail, also on Blender below 5.2, so the demos show it. The water
+and playa scenes stay on 2 - Rain + scans. You can still switch variant in one
+click.
+
+## 0.85.17 — Wall Height advice corrected (2026-10-29)
+
+**The beta notes no longer suggest a Wall Height of 0.5 m for Flow 2D.** The
+tip said it would let tall dunes deflect the wind. Measured on a default dune
+field (256 grid, 1500 steps), 0.5 m turned about one cell in nine into a wall,
+broke the barchan crests into steps and made each step about 46 % slower
+than Flow 2D with Wall Height at 0. Wind crosses a dune rather than going
+round it, so the notes now say to set Wall Height near the height of rock
+walls, canyons or mesas (the flow demos use 2 m) and to keep it above the
+height of the dunes. The Diagnose panel says the same. No setting or default
+changes.
+
 ## 0.85.16 — Rain with procedural detail on Blender 5.1 (2026-10-29)
 
 **A new shader variant, 5 - Rain + detail, brings rain and the procedural
