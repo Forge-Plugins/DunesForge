@@ -13,6 +13,29 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.19 — Manuals checked against the add-on (2026-10-29)
+
+**The QuickStart, Installation, Overview and beta notes were checked line by
+line against the add-on, and what was wrong is corrected.**
+
+- Save State and Load State are in **Export / Bake**, visible in every
+  interface mode; the Polish QuickStart sent you to Debug / State.
+- Footprints are made with **Objects Leave Tracks** and **Imprint Every
+  Frame**; the guide used names that do not exist in the panel. The bake
+  replay buttons are **Build Bake Viewer** and **Apply Bake Frame**.
+- **Phase Steps** shows for every wind mode except Normal, Reversing included.
+- If nothing moves, check **Freeze Terrain (haze flies)** as well as Freeze
+  Dunes: both stop the dunes.
+- Baking rendered detail into a new start is permanent; the guide said it
+  "can" happen.
+- The shader sections say that below Blender 5.2 Full is built without rain
+  and point to 5 - Rain + detail.
+- The tested Blender versions now read 5.1 to 5.4, the versions the full test
+  suite actually ran on.
+- The Overview no longer ends with an internal note meant for the publisher.
+- Demo names and control names are given as they appear in the panel, some
+  developer wording is gone, and the Polish text reads more naturally.
+
 ## 0.85.18 — Rain demos show the sand detail (2026-10-29)
 
 **The five rain demos (Rain, Monsoon, Oasis, Drying, Rain on Water) now open
