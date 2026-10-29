@@ -13,6 +13,25 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.16 — Rain with procedural detail on Blender 5.1 (2026-10-29)
+
+**A new shader variant, 5 - Rain + detail, brings rain and the procedural
+sand detail together on Blender below 5.2.** Until now rain there came only
+in 2 - Rain + scans, with the procedural layers (macro shading, grain,
+ripples, dunelets, strata) turned off, because Cycles refused the larger
+material and rendered the terrain black. Measured one block at a time on
+Blender 5.1.1, only three things keep rain from compiling there:
+displacement, texture bombing and Grain Specks. The other five procedural
+layers fit together with rain. The new variant is Full without displacement;
+below 5.2 it also leaves out texture bombing and Grain Specks, and your Grain
+Specks value comes back when you choose another variant. On Blender 5.2 and
+newer it keeps both.
+
+**The black-terrain warning is more accurate.** The red box under the variant
+list used to blame any procedural detail; it now names the actual causes and
+also catches displacement ticked by hand together with rain, which it missed
+before. Full is unchanged: below 5.2 it is still built without rain.
+
 ## 0.85.15 — Fed piles keep the angle of sand by themselves (2026-10-28)
 
 **A Sand Source no longer builds spikes and towers with the default settings.**
