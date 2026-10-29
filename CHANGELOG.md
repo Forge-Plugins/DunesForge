@@ -13,6 +13,23 @@ said a feature was not worth shipping and it was taken back out.
 
 ---
 
+## 0.85.20 — One name per control (2026-10-29)
+
+**Four controls were called one thing on the panel and another in tooltips,
+messages and the manuals. They now carry the panel's name everywhere.**
+
+| On the panel (and now everywhere) | Was also called |
+|---|---|
+| Terrain itself is loose sand | Terrain = Sand, Terrain Is Sand |
+| Protect generated terrain as rock | Start Terrain = Rock |
+| Even sand layer (start) | Initial Sand Depth |
+| Start From | Initial Heights |
+
+- A message that says "turn X off" now names the checkbox you actually see.
+- The heightmap section labels its checkbox **Edge Clamp: keep opposite edges
+  separate**, so the notes that point to Edge Clamp lead to it.
+- Names only: scenes, saved settings and the simulation are unchanged.
+
 ## 0.85.19 — Manuals checked against the add-on (2026-10-29)
 
 **The QuickStart, Installation, Overview and beta notes were checked line by
